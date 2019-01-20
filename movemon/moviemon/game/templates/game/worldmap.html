@@ -18,6 +18,16 @@
         </table>
         </p>
     </div>
+    {% if msg.battle %}
+    <div class="battle-msg">
+        You find enemy!!! Ready for battle?
+    </div>
+    {% endif %}
+    {% if msg.ball %}
+    <div class="ball-msg">
+        You find new ball !!!
+    </div>
+    {% endif %}
 {% endblock %}
 {% block navigation %}
     <div class="nav">
@@ -71,7 +81,7 @@
         </div>
         <div class="use-nav">
             <div class="a-btn">
-                <form action="" method="post">
+                <form action="{% url 'game:battle' player.bettle_monster %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="b" name="btn">
                     <input type="submit" value="A" {% if not active_btn.a %}disabled{% endif %} name="btn-a">

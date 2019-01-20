@@ -29,6 +29,7 @@ td {
 	margin: 50px;
 	border-radius: 20%;
 	background-color: white;
+	position: relative;
 }
 
 .nav, .move-nav, .menu-nav, .use-nav {
@@ -64,4 +65,22 @@ td {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.battle-msg {
+	position: absolute;
+	top: 200px;
+	right: 75px;
+	z-index: 10;
+	background-color: black;
+	color: white;
+}
+
+.ball-msg {
+	position: absolute;
+	top: 200px;
+	right: 125px;
+	z-index: 10;
+	background-color: black;
+	color: white;
 }
