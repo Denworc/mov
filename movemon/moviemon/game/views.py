@@ -6,7 +6,6 @@ from django.conf import settings
 
 def main_screen(request):
     config = GameConfig()
-    print("-"*20)
     config.load_default_settings()
     context = settings.GAME_SETTINGS
     context["active_btn"] = {
@@ -48,7 +47,6 @@ def new_game(request):
         elif btn == "down" and config['position']['y'] < (settings.BLOCK_COUNT - 1):
             config['position']['y'] += 1
         context["player"] = config
-    print(config)
     config_obj.load(config)
     return render(request, "game/worldmap.html", context)
 
@@ -57,6 +55,34 @@ def load_game(request):
     config_obj = GameConfig()
     config = config_obj.dump()
     context = settings.GAME_SETTINGS
+    if request.method == 'POST':
+        btn = request._get_post()['btn']
+        if btn == "top" and config['chosen_l']['load_one']:
+            print("*1")
+            config['chosen_l']['load_one'] = False
+            config['chosen_l']['load_three'] = True
+        elif btn == "top" and config['chosen_l']['load_two']:
+            print("*2")
+            config['chosen_l']['load_one'] = True
+            config['chosen_l']['load_two'] = False
+        elif btn == "top" and config['chosen_l']['load_three']:
+            print("*3")
+            config['chosen_l']['load_three'] = False
+            config['chosen_l']['load_two'] = True
+        elif btn == "down" and config['chosen_l']['load_three']:
+            print("*4")
+            config['chosen_l']['load_one'] = True
+            config['chosen_l']['load_three'] = False
+        elif btn == "down" and config['chosen_l']['load_two']:
+            print("*5")
+            config['chosen_l']['load_three'] = True
+            config['chosen_l']['load_two'] = False
+        elif btn == "down" and config['chosen_l']['load_one']:
+            print("*6")
+            config['chosen_l']['load_two'] = True
+            config['chosen_l']['load_one'] = False
+        else:
+            config['chosen_l']['load_three'] = True
     context["player"] = config
     context["active_btn"] = {
         "left": False,
@@ -68,7 +94,8 @@ def load_game(request):
         "a": True,
         "b": True,
     }
-    print(context["active_btn"])
+    print(config['chosen_l']['load_three'])
+    config_obj.load(config)
     return render(request, "game/load_game.html", context)
 
 

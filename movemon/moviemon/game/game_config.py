@@ -7,7 +7,6 @@ class GameConfig:
 
     def load(self, config):
         self.user_params = config
-        print(config, "*"*10)
         f = open("user_params", "wb")
         pickle.dump(self.user_params, f)
         f.close()
@@ -28,6 +27,11 @@ class GameConfig:
                 "x": self.settings["start_x"],
                 "y": self.settings["start_y"],
             },
+            "chosen_l": {
+                "load_one": False,
+                "load_two": False,
+                "load_three": False,
+            }
         }
         f = open("user_params", "wb")
         pickle.dump(self.user_params, f)

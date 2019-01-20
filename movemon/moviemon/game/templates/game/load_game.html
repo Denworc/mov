@@ -2,6 +2,15 @@
 {% block screen %}
     <div class="main_screen">
         <h1>LOAD_GAME</h1>
+        <div {% if player.chosen_l.load_one %} style="border: 1px solid red" {% endif %} class="load load-1">
+            <span>{% if player.chosen_l.load_one %} >&nbsp;&nbsp; {% endif %}</span> {{ player.chosen_l.load_one|default:"Free" }}
+        </div>
+        <div {% if player.chosen_l.load_two %} style="border: 1px solid red" {% endif %} class="load load-2">
+            <span>{% if player.chosen_l.load_two %} >&nbsp;&nbsp; {% endif %}</span> {{ player.chosen_l.load_two|default:"Free" }}
+        </div>
+        <div {% if player.chosen_l.load_three %} style="border: 1px solid red" {% endif %} class="load load-3">
+            <span>{% if player.chosen_l.load_three %} >&nbsp;&nbsp; {% endif %}</span> {{ player.chosen_l.load_three|default:"Free" }}
+        </div>
     </div>
 {% endblock %}
 {% block navigation %}
@@ -16,14 +25,14 @@
             </div>
             <div class="move-vertical">
                 <div class="top">
-                    <form action="" method="post">
+                    <form action="{% url 'game:load-game' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" value="top" name="btn">
                         <input type="submit" value="&uarr;" {% if not active_btn.top %}disabled{% endif %} name="btn-top">
                     </form>
                 </div>
                 <div class="down">
-                    <form action="" method="post">
+                    <form action="{% url 'game:load-game' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" value="down" name="btn">
                         <input type="submit" value="&darr;" {% if not active_btn.down %}disabled{% endif %} name="btn-down">
