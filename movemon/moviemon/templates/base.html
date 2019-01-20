@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moviemon</title>
+    <link href="{% static 'css/' %}style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="console">
+            <div class="screen">
+                {% block screen %}
+                    <h1>Game content not found (lol)</h1>
+                {% endblock %}
+            </div>
+            <!--{% include "game/nav.html" %}-->
+            {% block navigation %}
+                <h1>Game navigation not found (lal)</h1>
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

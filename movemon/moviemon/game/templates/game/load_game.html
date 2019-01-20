@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block screen %}
+    <div class="main_screen">
+        <h1>LOAD_GAME</h1>
+    </div>
+{% endblock %}
+{% block navigation %}
+    <div class="nav">
+        <div class="move-nav">
+            <div class="left">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="left" name="btn">
+                    <input type="submit" value="&larr;" {% if not active_btn.left %}disabled{% endif %} name="btn-left">
+                </form>
+            </div>
+            <div class="move-vertical">
+                <div class="top">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="top" name="btn">
+                        <input type="submit" value="&uarr;" {% if not active_btn.top %}disabled{% endif %} name="btn-top">
+                    </form>
+                </div>
+                <div class="down">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="down" name="btn">
+                        <input type="submit" value="&darr;" {% if not active_btn.down %}disabled{% endif %} name="btn-down">
+                    </form>
+                </div>
+            </div>
+            <div class="right">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="right" name="btn">
+                    <input type="submit" value="&rarr;" {% if not active_btn.right %}disabled{% endif %} name="btn-right">
+                </form>
+            </div>
+        </div>
+        <div class="menu-nav">
+            <div class="select">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="select" name="btn">
+                    <input type="submit" value="select" {% if not active_btn.select %}disabled{% endif %} name="btn-select">
+                </form>
+            </div>
+            <div class="start">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="start" name="btn">
+                    <input type="submit" value="start" {% if not active_btn.start %}disabled{% endif %} name="btn-start">
+                </form>
+            </div>
+        </div>
+        <div class="use-nav">
+            <div class="a-btn">
+                <form action="{% url 'game:new-game' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="b" name="btn">
+                    <input type="submit" value="A" {% if not active_btn.a %}disabled{% endif %} name="btn-a">
+                </form>
+            </div>
+            <div class="b-btn">
+                <form action="{% url 'game:load-game' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="b" name="btn">
+                    <input type="submit" value="B" {% if not active_btn.b %}disabled{% endif %} name="btn-b">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
