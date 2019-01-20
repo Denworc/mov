@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block screen %}
     <div class="main_screen">
-        <h1>MOVIEMONS</h1>
+        <h1>Options</h1>
         <!--<p class="">-->
             <!--<span>{% if new_game %} > {% endif %}</span> New game-->
         <!--</p>-->
         <!--<p class="">-->
             <!--<span>{% if load_game %} > {% endif %}</span> Load game-->
         <!--</p>-->
-        <p class="">
-            <span> Press A: </span> New game
-        </p>
-        <p class="">
-            <span> Press B: </span> Load game
-        </p>
+        <!--<p class="">-->
+            <!--<span> Press A: </span> New game-->
+        <!--</p>-->
+        <!--<p class="">-->
+            <!--<span> Press B: </span> Load game-->
+        <!--</p>-->
     </div>
 {% endblock %}
 {% block navigation %}
@@ -59,7 +59,7 @@
                 </form>
             </div>
             <div class="start">
-                <form action="" method="post">
+                <form action="{% url 'game:new-game' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="start" name="btn">
                     <input type="submit" value="start" {% if not active_btn.start %}disabled{% endif %} name="btn-start">
@@ -68,14 +68,14 @@
         </div>
         <div class="use-nav">
             <div class="a-btn">
-                <form action="{% url 'game:new-game' %}" method="post">
+                <form action="{% url 'game:save-game' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="new-game" name="btn">
                     <input type="submit" value="A" {% if not active_btn.a %}disabled{% endif %} name="btn-a">
                 </form>
             </div>
             <div class="b-btn">
-                <form action="{% url 'game:load-game' %}" method="post">
+                <form action="{% url 'game:main-screen' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="load-game" name="btn">
                     <input type="submit" value="B" {% if not active_btn.b %}disabled{% endif %} name="btn-b">

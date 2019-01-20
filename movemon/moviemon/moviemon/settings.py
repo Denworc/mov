@@ -126,6 +126,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+BLOCK_COUNT = 10
+
 GAME_SETTINGS = {
     "start_x": 3,
     "start_y": 3,
@@ -139,7 +141,7 @@ GAME_SETTINGS = {
         "a": False,
         "b": False,
     },
-    "range": range(10),
+    "range": range(BLOCK_COUNT),
     "player": {
 
     },

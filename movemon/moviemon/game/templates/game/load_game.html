@@ -56,14 +56,14 @@
         </div>
         <div class="use-nav">
             <div class="a-btn">
-                <form action="{% url 'game:new-game' %}" method="post">
+                <form action="" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="b" name="btn">
                     <input type="submit" value="A" {% if not active_btn.a %}disabled{% endif %} name="btn-a">
                 </form>
             </div>
             <div class="b-btn">
-                <form action="{% url 'game:load-game' %}" method="post">
+                <form action="{% url 'game:main-screen' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="b" name="btn">
                     <input type="submit" value="B" {% if not active_btn.b %}disabled{% endif %} name="btn-b">

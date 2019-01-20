@@ -5,8 +5,12 @@ import pickle
 
 class GameConfig:
 
-    def load(self):
-        pass
+    def load(self, config):
+        self.user_params = config
+        print(config, "*"*10)
+        f = open("user_params", "wb")
+        pickle.dump(self.user_params, f)
+        f.close()
 
     def dump(self):
         f = open("user_params", "rb")
